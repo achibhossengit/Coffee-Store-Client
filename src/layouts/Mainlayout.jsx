@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '../components/Header';
 import { Outlet } from 'react-router';
 
@@ -8,7 +7,7 @@ const Mainlayout = () => {
             <header>
                 <Header></Header>
             </header>
-            <main>
+            <main className='max-w-7xl mx-auto'>
                 <Outlet></Outlet>
             </main>
         </div>
