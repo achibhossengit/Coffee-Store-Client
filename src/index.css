@@ -1,2 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #331A15;
+  --color-secondary: #E3B577;
+  --color-base-200: #F5F4F1;
+  --color-base-300: #ECEAE3;
+}
+
+*{
+    font-family: "Rancho", cursive;
+}
