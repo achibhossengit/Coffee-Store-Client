@@ -30,7 +30,7 @@ const CoffeeCard = ({ coffee, handleCoffeeDelete }) => {
           {/* Action Buttons */}
           <div className="flex flex-col gap-2 ml-auto">
             <Link
-              to={`coffees/${_id}`}
+              to={`coffee/${_id}`}
               className="btn btn-sm bg-secondary text-white"
             >
               <FaEye />
