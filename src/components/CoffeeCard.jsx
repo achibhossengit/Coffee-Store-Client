@@ -36,7 +36,7 @@ const CoffeeCard = ({ coffee, handleCoffeeDelete }) => {
               <FaEye />
             </Link>
             <Link
-              to={`updateCoffee/${_id}`}
+              to={`coffee/${_id}/edit`}
               className="btn btn-sm bg-primary text-white"
             >
               <MdEdit />
