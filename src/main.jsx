@@ -7,6 +7,10 @@ import AddCoffee from "./pages/AddCoffee";
 import Home from "./pages/Home";
 import CoffeeDetails from "./pages/CoffeeDetails";
 import UpdateCoffee from "./pages/UpdateCoffee";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import AuthProvider from "./context/AuthProvider";
+import Users from "./pages/Users";
 
 const router = createBrowserRouter([
   {
@@ -37,12 +41,28 @@ const router = createBrowserRouter([
         Component: UpdateCoffee,
         hydrateFallbackElement: <p>Loading...</p>,
       },
+      {
+        path: "signin",
+        Component: SignIn,
+      },
+      {
+        path: "signup",
+        Component: SignUp,
+      },
+      {
+        path: "users",
+        Component: Users,
+        loader: () => fetch("http://localhost:3000/users"),
+        hydrateFallbackElement: <p>Loading....</p>,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
