@@ -2,11 +2,32 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const SignIn = () => {
+  const { signInUser } = useContext(AuthContext);
   const { email } = useContext(AuthContext);
   console.log(email);
   const handleSignin = (e) => {
     e.preventDefault();
     console.log("sign in clicked");
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log({ email, password });
+
+    signInUser(email, password)
+      .then((userData) => {
+        console.log(userData);
+        const userInfo = {
+          email,
+          lastSignInTime: userData.user?.metadata?.lastSignInTime,
+        };
+        fetch("http://localhost:3000/users", {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="flex justify-center items-center min-h-[70vh] w-full bg-base-100 px-4">
@@ -25,6 +46,7 @@ const SignIn = () => {
             <input
               id="email"
               type="email"
+              name="email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder="Enter your email"
               required
@@ -40,6 +62,7 @@ const SignIn = () => {
             <input
               id="password"
               type="password"
+              name="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder="Enter your password"
               required
