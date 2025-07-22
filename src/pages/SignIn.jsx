@@ -3,29 +3,25 @@ import { AuthContext } from "../context/AuthContext";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
-  const { email } = useContext(AuthContext);
-  console.log(email);
   const handleSignin = (e) => {
     e.preventDefault();
     console.log("sign in clicked");
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log({ email, password });
 
     signInUser(email, password)
       .then((userData) => {
-        console.log(userData);
         const userInfo = {
           email,
           lastSignInTime: userData.user?.metadata?.lastSignInTime,
         };
-        fetch("http://localhost:3000/users", {
+        fetch("https://coffee-store-server-achibhossengit-achib-hossens-projects.vercel.app/users", {
           method: "PATCH",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(userInfo),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          // .then((data) => console.log(data));
       })
       .catch((error) => console.log(error));
   };

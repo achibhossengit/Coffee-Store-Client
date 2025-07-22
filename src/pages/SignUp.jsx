@@ -17,14 +17,13 @@ const SignUp = () => {
     // now send data to firebase and backend
     createUser(email, password)
       .then((userCredential) => {
-        console.log(userCredential);
         const userInfo = {
             email,
             ...restFormData,
             'creationTime': userCredential.user?.metadata?.creationTime,
             'lastSignInTime': userCredential.user?.metadata?.lastSignInTime,
         }
-        fetch("http://localhost:3000/users", {
+        fetch("https://coffee-store-server-achibhossengit-achib-hossens-projects.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

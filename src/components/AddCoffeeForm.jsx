@@ -7,7 +7,7 @@ const AddCoffeeForm = () => {
     const formData = new FormData(form);
     const newCoffee = Object.fromEntries(formData.entries());
 
-    fetch("http://localhost:3000/coffees", {
+    fetch("https://coffee-store-server-achibhossengit-achib-hossens-projects.vercel.app/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -16,7 +16,7 @@ const AddCoffeeForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after adding coffee", data);
+        // console.log("after adding coffee", data);
         if (data.insertedId) {
           Swal.fire({
             title: "Coffee added successfully!",

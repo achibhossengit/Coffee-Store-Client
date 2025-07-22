@@ -13,7 +13,7 @@ const UpdateCoffee = () => {
     const updatedCoffee = Object.fromEntries(formData.entries());
 
     // send to the backend
-    fetch(`http://localhost:3000/coffees/${coffee._id}`, {
+    fetch(`https://coffee-store-server-achibhossengit-achib-hossens-projects.vercel.app/coffees/${coffee._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -22,7 +22,6 @@ const UpdateCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           Swal.fire({
             title: "Coffee Info Updated successfully!",
